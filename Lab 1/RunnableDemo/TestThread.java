@@ -5,10 +5,15 @@
 package com.itcarlow.runnabletest;
 
 /**
- *
+ * TestThread is the testing class for RunnableDemo
  * @author KEHOEJ
  */
 public class TestThread {
+    /**
+     * Creates and starts two RunnableDemo objects/threads for demonstration
+     * purposes.
+     * @param args Unused
+     */
     public static void main(String args[]) {
         RunnableDemo R1 = new RunnableDemo( "Thread-1");
         R1.start();
