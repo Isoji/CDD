@@ -43,10 +43,8 @@ public class IntegerObj {
      * Increments the integer value by 1.
      * @return an integer
      */
-    int inc(){
-        synchronized(this){
-            this.value++;
-        }
+    synchronized int inc(){
+        this.value++;
         return this.value;
     }
 }
