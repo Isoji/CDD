@@ -43,6 +43,8 @@ public class Main {
      */
     public static void main(String[] args)
     {
+        long startTime = System.nanoTime();
+
         IntegerObj total = new IntegerObj(0);
         // creates five tasks
         Runnable r1 = new Task("task 1",total);
@@ -67,6 +69,11 @@ public class Main {
         } catch (InterruptedException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
+
         System.out.println("total is: "+total.value);
+        System.out.println("time elapsed in milliseconds: " + elapsedTime/1000000);
     }
 }

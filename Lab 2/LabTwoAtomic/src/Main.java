@@ -44,6 +44,8 @@ public class Main {
      */
     public static void main(String[] args)
     {
+        long startTime = System.nanoTime();
+
         // creates an AtomicInteger with a default value of 0
         AtomicInteger total = new AtomicInteger();
 
@@ -64,12 +66,18 @@ public class Main {
         pool.execute(r4);
           
         // pool shutdown ( Step 4)
-        pool.shutdown();    
+        pool.shutdown();
+
         try {
             Thread.sleep(2500);
         } catch (InterruptedException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
+
         System.out.println("total is: "+total.get());
+        System.out.println("time elapsed in milliseconds: " + elapsedTime/1000000);
     }
 }
