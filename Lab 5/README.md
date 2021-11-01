@@ -1,0 +1,4 @@
+- Create a Java project that shows a solution to the Leaders-Followers problem. 
+- The solution must be implemented as a Java(s) class that utilises only semaphores.  
+- Your code should display the solution in action and demonstrate that it is working correctly.  
+- As always the project must be documented using JavaDoc and uploaded to your lab Github repository.
