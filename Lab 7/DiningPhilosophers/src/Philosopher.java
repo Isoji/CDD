@@ -34,6 +34,7 @@ public class Philosopher implements Runnable{
     private final int threadNum; // index of the thread
     private final int leftFork; // index of the left-hand fork
     private final int rightFork; // index of the right-hand fork
+    private boolean ate;
 
     /**
      * Creates a Philosopher with the specified Array of forks, Semaphore objects, and integer.
@@ -49,6 +50,7 @@ public class Philosopher implements Runnable{
         this.threadNum = threadNum;
         this.leftFork = threadNum;
         this.rightFork = (threadNum + 1) % forks.length;
+        this.ate = false;
     }
 
     /**
@@ -56,17 +58,34 @@ public class Philosopher implements Runnable{
      */
     @Override
     public void run() {
-        try{
-            mutex.acquire();
+        while(!ate) {
+            try {
                 footman.acquire();
-                mutex.release();
+                mutex.acquire();
+                if (forksAvail()) {
                     getForks();
-                        System.out.println("Philosopher "+ threadNum +" is eating");
+                    mutex.release();
+                    System.out.println("Philosopher " + threadNum + " is eating..");
+                    Thread.sleep((long) (Math.random() * 3000)); // simulation of a process runtime
+                    ate = true;
                     putForks();
+                }
+                else{
+                    mutex.release();
+                }
                 footman.release();
-        }catch(InterruptedException e){
-            e.getStackTrace();
+            } catch (InterruptedException e) {
+                e.getStackTrace();
+            }
         }
+    }
+
+    /**
+     * Checks if both the left and right forks are available.
+     * @return the state of availability of both forks
+     */
+    public boolean forksAvail(){
+        return forks[leftFork].availablePermits() > 0 && forks[rightFork].availablePermits() > 0;
     }
 
     /**
