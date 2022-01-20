@@ -1,3 +1,2 @@
-- Create a Java project that shows a solution to the Dining philosophers problem.  
-- The solution must be implemented as one or more Java classes that utilises only semaphores.
-- Your code should demonstrate the solution in action and show that it is functioning correctly.
+<h1>Lab 7</h1>
+A Java project that shows a solution to the Dining philosophers problem utilising semaphores.
